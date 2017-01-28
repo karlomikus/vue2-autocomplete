@@ -3,7 +3,7 @@
   <div :class="(className ? className + '-wrapper ' : '') + 'autocomplete-wrapper'">
     <input  type="text"
             :id="id"
-            :class="(className ? className + '-input ' : '') + 'autocomplete-input'"
+            :class="(className ? className + '-input ' : '') + (inputClassName ? inputClassName + ' ' : '') + 'autocomplete-input'"
             :placeholder="placeholder"
             v-model="type"
             @input="input(type)"
@@ -46,6 +46,7 @@
 
     props: {
       id: String,
+      inputClassName: String,
       className: String,
       placeholder: String,
 
