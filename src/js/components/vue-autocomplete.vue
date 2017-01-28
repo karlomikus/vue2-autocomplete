@@ -1,6 +1,6 @@
 
 <template>
-  <div :class="(className ? className + '-wrapper ' : '') + 'autocomplete-wrapper'">
+  <div :class="(className ? className + '-wrapper ' : '') + (wrapperClassName ? wrapperClassName + ' ' : '') + 'autocomplete-wrapper'">
     <input  type="text"
             :id="id"
             :class="(className ? className + '-input ' : '') + (inputClassName ? inputClassName + ' ' : '') + 'autocomplete-input'"
@@ -46,6 +46,7 @@
 
     props: {
       id: String,
+      wrapperClassName: String,
       inputClassName: String,
       className: String,
       placeholder: String,
