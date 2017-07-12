@@ -95,6 +95,9 @@ Full Props
 
     id="custom id"
     class-name="custom class name"
+    wrapperClass="custom class name"
+    inputClass="custom class name"
+    listClass="custom class name"
     placeholder="placeholder"
     :init-value="initial value"
     :debounce="250"
@@ -149,7 +152,16 @@ Same as anchor but it's used for subtitle or description of list
 Placeholder for input
 
 #### className (String)
-Custom class name for autocomplete component
+Custom class name for autocomplete component. Prefer using `inputClass`, `wrapperClass` or `listClass`.
+
+#### inputClass (String)
+Custom class name for autocomplete input tag.
+
+#### wrapperClass (String)
+Custom class name for autocomplete div tag surrounding the content.
+
+#### listClass (String)
+Custom class name for autocomplete div tag sourrounding the results list.
 
 #### id (String)
 Custom id name for autocomplete component

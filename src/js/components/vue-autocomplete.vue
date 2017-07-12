@@ -1,9 +1,9 @@
 
 <template>
-  <div :class="(className ? className + '-wrapper ' : '') + 'autocomplete-wrapper'">
+  <div :class="(className ? className + '-wrapper ' : '') + (wrapperClass ? wrapperClass + ' ' : '') + 'autocomplete-wrapper'">
     <input  type="text"
             :id="id"
-            :class="(className ? className + '-input ' : '') + 'autocomplete-input'"
+            :class="(className ? className + '-input ' : '') + (inputClass ? inputClass + ' ' : '') + 'autocomplete-input'"
             :placeholder="placeholder"
             v-model="type"
             :name="name"
@@ -14,7 +14,7 @@
             @focus="focus"
             autocomplete="off" />
 
-    <div :class="(className ? className + '-list ' : '') + 'autocomplete transition autocomplete-list'" v-show="showList">
+    <div :class="(className ? className + '-list ' : '') + (listClass ? listClass + ' ' : '') + 'autocomplete transition autocomplete-list'" v-show="showList">
       <ul>
         <li v-for="(data, i) in json"
             transition="showAll"
@@ -73,6 +73,9 @@
 
     props: {
       id: String,
+      wrapperClass: String,
+      inputClass: String,
+      listClass: String,
       className: String,
       placeholder: String,
       name: String,
