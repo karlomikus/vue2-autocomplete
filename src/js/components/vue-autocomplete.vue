@@ -229,7 +229,6 @@
           case 13: //enter
             this.selectList(this.json[this.focusList])
             this.showList = false;
-            console.log('happenign')
             e.preventDefault()
           break;
           case 27: //esc
@@ -326,15 +325,14 @@
         this.type = val
       },
 
-	  deepValue(obj, path) {
-		for (var i = 0, path = path.split('.'), len = path.length; i < len; i++) {
-			obj = obj[path[i]];
-		};
-		return obj;
-	  }
+      deepValue(obj, path) {
+        for (var i = 0, path = path.split('.'), len = path.length; i < len; i++) {
+          obj = obj[path[i]]
+        };
+        return obj
+      }
 
     },
-
 
     created(){
       // Sync parent model with initValue Props
