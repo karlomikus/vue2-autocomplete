@@ -198,6 +198,9 @@
       focus(e){
         this.focusList = 0;
 
+        // If they click on our field, act as if they typed something to show the list
+        this.input(this.type)
+
         // Callback Event
         this.onFocus ? this.onFocus(e) : null
       },
@@ -262,10 +265,12 @@
 
       getData(val){
 
-
         let self = this;
 
-        if (val.length < this.min) return;
+        if ((!val) || (val.length < this.min)) {
+          this.showList = false
+          return
+        }
 
         if(this.url != null){
 
@@ -302,12 +307,14 @@
           });
 
           ajax.addEventListener('loadend', function (data) {
-            let json = JSON.parse(this.responseText);
+            if (this.responseText !== undefined && this.responseText && this.responseText.length > 0) {
+              let json = JSON.parse(this.responseText);
 
-            // Callback Event
-            this.onAjaxLoaded ? this.onAjaxLoaded(json) : null
-
-            self.json = self.process ? self.process(json) : json;
+              // Callback Event
+              self.onAjaxLoaded ? self.onAjaxLoaded(json) : null
+              self.json = self.process ? self.process(json) : json
+              self.showList = (self.json !== undefined && self.json && self.json.length > 0)
+            }
           });
 
         }
