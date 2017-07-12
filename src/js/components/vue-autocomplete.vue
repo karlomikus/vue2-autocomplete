@@ -19,14 +19,17 @@
         <li v-for="(data, i) in json"
             transition="showAll"
             :class="activeClass(i)">
-
-          <a  href="#"
+          <a v-if="!template" href="#"
               @click.prevent="selectList(data)"
               @mousemove="mousemove(i)">
             <b class="autocomplete-anchor-text">{{ deepValue(data, anchor) }}</b> <!-- have to leave this bold tag for backwards compat... perhaps just style it with class -->
             <span class="autocomplete-anchor-label">{{ deepValue(data, label) }}</span>
           </a>
-
+          <a v-if="template" href="#"
+            @click.prevent="selectList(data)"
+            @mousemove="mousemove(i)"
+            v-html="template(data)">
+          </a>
         </li>
       </ul>
     </div>
@@ -115,6 +118,9 @@
         type: Number,
         default: 0
       },
+
+      // Create a custom template from data.
+      template: Function,
 
       // Process the result before retrieveng the result array.
       process: Function,
@@ -301,7 +307,6 @@
 
           ajax.addEventListener('progress', function (data) {
             if(data.lengthComputable){
-
               // Callback Event
               self.onAjaxProgress ? self.onAjaxProgress(data) : null
             }
