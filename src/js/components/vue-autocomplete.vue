@@ -23,8 +23,8 @@
           <a  href="#"
               @click.prevent="selectList(data)"
               @mousemove="mousemove(i)">
-            <b class="autocomplete-anchor-text">{{ data[anchor] }}</b> <!-- have to leave this bold tag for backwards compat... perhaps just style it with class -->
-            <span class="autocomplete-anchor-label">{{ data[label] }}</span>
+            <b class="autocomplete-anchor-text">{{ deepValue(data, anchor) }}</b> <!-- have to leave this bold tag for backwards compat... perhaps just style it with class -->
+            <span class="autocomplete-anchor-label">{{ deepValue(data, label) }}</span>
           </a>
 
         </li>
@@ -304,7 +304,7 @@
             if(data.lengthComputable){
 
               // Callback Event
-              this.onAjaxProgress ? this.onAjaxProgress(data) : null
+              self.onAjaxProgress ? self.onAjaxProgress(data) : null
             }
           });
 
@@ -324,8 +324,17 @@
 
       setValue(val) {
         this.type = val
-      }
+      },
+
+	  deepValue(obj, path) {
+		for (var i = 0, path = path.split('.'), len = path.length; i < len; i++) {
+			obj = obj[path[i]];
+		};
+		return obj;
+	  }
+
     },
+
 
     created(){
       // Sync parent model with initValue Props
