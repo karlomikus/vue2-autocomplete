@@ -23,7 +23,7 @@
               @click.prevent="selectList(data)"
               @mousemove="mousemove(i)">
             <b class="autocomplete-anchor-text">{{ deepValue(data, anchor) }}</b> <!-- have to leave this bold tag for backwards compat... perhaps just style it with class -->
-            <span class="autocomplete-anchor-label">{{ deepValue(data, label) }}</span>
+            <span class="autocomplete-anchor-label" v-if="label">{{ deepValue(data, label) }}</span>
           </a>
           <a v-if="template" href="#"
             @click.prevent="selectList(data)"
