@@ -6,6 +6,7 @@
             :class="(className ? className + '-input ' : '') + 'autocomplete-input'"
             :placeholder="placeholder"
             v-model="type"
+            :name="name"
             @input="input(type)"
             @dblclick="showAll"
             @blur="hideAll"
@@ -71,6 +72,7 @@
       id: String,
       className: String,
       placeholder: String,
+      name: String,
 
       // Intial Value
       initValue: {
